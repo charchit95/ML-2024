@@ -1,0 +1,180 @@
+
+==================================================
+Decision Tree - Monk 1 Problem
+==================================================
+Accuracy: 0.9630
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.96      0.96      0.96       216
+           1       0.96      0.96      0.96       216
+
+    accuracy                           0.96       432
+   macro avg       0.96      0.96      0.96       432
+weighted avg       0.96      0.96      0.96       432
+
+
+==================================================
+Random Forest - Monk 1 Problem
+==================================================
+Accuracy: 0.9583
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.97      0.96       216
+           1       0.97      0.95      0.96       216
+
+    accuracy                           0.96       432
+   macro avg       0.96      0.96      0.96       432
+weighted avg       0.96      0.96      0.96       432
+
+
+==================================================
+SVM - Monk 1 Problem
+==================================================
+Accuracy: 0.8912
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.87      0.93      0.89       216
+           1       0.92      0.86      0.89       216
+
+    accuracy                           0.89       432
+   macro avg       0.89      0.89      0.89       432
+weighted avg       0.89      0.89      0.89       432
+
+
+==================================================
+Neural Network - Monk 1 Problem
+==================================================
+Accuracy: 0.9977
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00       216
+           1       1.00      1.00      1.00       216
+
+    accuracy                           1.00       432
+   macro avg       1.00      1.00      1.00       432
+weighted avg       1.00      1.00      1.00       432
+
+
+==================================================
+Decision Tree - Monk 2 Problem
+==================================================
+Accuracy: 0.8171
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.81      0.86       290
+           1       0.68      0.84      0.75       142
+
+    accuracy                           0.82       432
+   macro avg       0.80      0.82      0.80       432
+weighted avg       0.83      0.82      0.82       432
+
+
+==================================================
+Random Forest - Monk 2 Problem
+==================================================
+Accuracy: 0.7431
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.81      0.81      0.81       290
+           1       0.61      0.60      0.60       142
+
+    accuracy                           0.74       432
+   macro avg       0.71      0.71      0.71       432
+weighted avg       0.74      0.74      0.74       432
+
+
+==================================================
+SVM - Monk 2 Problem
+==================================================
+Accuracy: 0.7130
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.73      0.90      0.81       290
+           1       0.62      0.33      0.43       142
+
+    accuracy                           0.71       432
+   macro avg       0.68      0.62      0.62       432
+weighted avg       0.70      0.71      0.68       432
+
+
+==================================================
+Neural Network - Monk 2 Problem
+==================================================
+Accuracy: 1.0000
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00       290
+           1       1.00      1.00      1.00       142
+
+    accuracy                           1.00       432
+   macro avg       1.00      1.00      1.00       432
+weighted avg       1.00      1.00      1.00       432
+
+
+==================================================
+Decision Tree - Monk 3 Problem
+==================================================
+Accuracy: 0.9167
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.89      0.94      0.91       204
+           1       0.94      0.89      0.92       228
+
+    accuracy                           0.92       432
+   macro avg       0.92      0.92      0.92       432
+weighted avg       0.92      0.92      0.92       432
+
+
+==================================================
+Random Forest - Monk 3 Problem
+==================================================
+Accuracy: 0.9606
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      1.00      0.96       204
+           1       1.00      0.93      0.96       228
+
+    accuracy                           0.96       432
+   macro avg       0.96      0.96      0.96       432
+weighted avg       0.96      0.96      0.96       432
+
+
+==================================================
+SVM - Monk 3 Problem
+==================================================
+Accuracy: 0.9769
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      1.00      0.98       204
+           1       1.00      0.96      0.98       228
+
+    accuracy                           0.98       432
+   macro avg       0.98      0.98      0.98       432
+weighted avg       0.98      0.98      0.98       432
+
+
+==================================================
+Neural Network - Monk 3 Problem
+==================================================
+Accuracy: 0.9444
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.97      0.94       204
+           1       0.97      0.92      0.95       228
+
+    accuracy                           0.94       432
+   macro avg       0.94      0.95      0.94       432
+weighted avg       0.95      0.94      0.94       432
+
