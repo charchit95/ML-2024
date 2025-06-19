@@ -56,9 +56,13 @@ epochs = 500
 batch_size = 16
 
 # Training Loop
-losses = []
+train_losses = []
+val_losses = []
+
 for epoch in range(epochs):
-    # Mini-batch training
+    epoch_train_loss = 0
+    num_batches = 0
+
     for i in range(0, X_train.shape[0], batch_size):
         X_batch = X_train[i:i + batch_size]
         y_batch = y_train[i:i + batch_size]
@@ -71,6 +75,8 @@ for epoch in range(epochs):
 
         # Compute Loss (MSE)
         loss = mean_squared_error(y_batch, A2)
+        epoch_train_loss += loss
+        num_batches += 1
 
         # Backpropagation
         dZ2 = (A2 - y_batch) / batch_size
@@ -88,24 +94,33 @@ for epoch in range(epochs):
         W2 -= learning_rate * dW2
         b2 -= learning_rate * db2
 
-    # Validation
+    # Average training loss for the epoch
+    avg_train_loss = epoch_train_loss / num_batches
+    train_losses.append(avg_train_loss)
+
+    # Validation loss
     Z1_val = np.dot(X_val, W1) + b1
     A1_val = relu(Z1_val)
     Z2_val = np.dot(A1_val, W2) + b2
     val_loss = mean_squared_error(y_val, Z2_val)
+    val_losses.append(val_loss)
 
-    losses.append(val_loss)
     if epoch % 50 == 0:
-        print(f"Epoch {epoch}/{epochs} - Loss: {loss:.4f}, Val Loss: {val_loss:.4f}")
+        print(f"Epoch {epoch}/{epochs} - Train Loss: {avg_train_loss:.4f}, Val Loss: {val_loss:.4f}")
 
-# Plot Loss Curve
-plt.plot(losses)
+# Plot Training and Validation MSE
+plt.figure(figsize=(10, 6))
+plt.plot(train_losses, label='Training MSE')
+# plt.plot(val_losses, label='Validation MSE')
 plt.xlabel("Epochs")
-plt.ylabel("Validation Loss")
-plt.title("Training Loss Curve")
+plt.ylabel("Mean Squared Error")
+plt.title("Training and Validation MSE Over Epochs")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
 plt.show()
 
-# Load Test Data
+# Load and Normalize Test Data
 X_test = df_test.iloc[:, 1:].values  # Exclude ID column
 X_test = (X_test - X_mean) / X_std  # Normalize using training statistics
 
@@ -121,16 +136,11 @@ output_df.insert(0, "id", np.arange(1, len(output_df) + 1))
 
 output_filename = "./CUP24-Out.csv"
 
-
 with open(output_filename, 'w', newline='') as f:
     f.write("# Charchit Bansal, Sounak Mukopadhyay\n")
     f.write("# The Traders\n")
     f.write("# ML-CUP24 V1\n")
     f.write("# 20/06/2025\n")
     output_df.to_csv(f, index=False, header=False)
-
-
-
-# output_df.to_csv(output_filename, index=False, header=False)
 
 print(f"\nPredictions saved to: {output_filename}")
