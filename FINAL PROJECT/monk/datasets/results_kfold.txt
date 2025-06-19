@@ -1,0 +1,7 @@
+mean error: 0.01673841045135817 mean epochs: 5412.8 mean score: 89.16666666666667 parameters: {'hidden_layers': 1, 'n_units': 4, 'eta': 0.75, 'alpha': 0.75, 'lambda': 0}
+mean error: 0.01519839271367141 mean epochs: 4912.6 mean score: 92.5 parameters: {'hidden_layers': 1, 'n_units': 4, 'eta': 0.75, 'alpha': 0.8, 'lambda': 0}
+mean error: 0.017327232296787544 mean epochs: 4952.8 mean score: 88.33333333333334 parameters: {'hidden_layers': 1, 'n_units': 4, 'eta': 0.75, 'alpha': 0.85, 'lambda': 0}
+mean error: 0.019930734760636205 mean epochs: 4612.4 mean score: 90.0 parameters: {'hidden_layers': 1, 'n_units': 4, 'eta': 0.75, 'alpha': 0.9, 'lambda': 0}
+mean error: 0.02295358434030546 mean epochs: 6746.8 mean score: 92.5 parameters: {'hidden_layers': 1, 'n_units': 4, 'eta': 0.75, 'alpha': 0.95, 'lambda': 0}
+mean error: 0.016519257178102743 mean epochs: 6744.4 mean score: 87.5 parameters: {'hidden_layers': 1, 'n_units': 4, 'eta': 0.75, 'alpha': 0, 'lambda': 0}
+mean error: nan mean epochs: 4802.0 mean score: 50.0 parameters: {'hidden_layers': 1, 'n_units': 4, 'eta': 0.75, 'alpha': 99, 'lambda': 0}
