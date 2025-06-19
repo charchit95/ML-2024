@@ -134,13 +134,13 @@ y_test = (Z2_test * y_std) + y_mean  # Convert back to original scale
 output_df = pd.DataFrame(y_test, columns=["output_x", "output_y", "output_z"])
 output_df.insert(0, "id", np.arange(1, len(output_df) + 1))
 
-output_filename = "./CUP24-Out.csv"
+output_filename = "./Traders_ML-CUP24-TS.csv"
 
 with open(output_filename, 'w', newline='') as f:
-    f.write("# Charchit Bansal, Sounak Mukopadhyay\n")
-    f.write("# The Traders\n")
-    f.write("# ML-CUP24 V1\n")
-    f.write("# 20/06/2025\n")
+    f.write("Charchit Bansal, Sounak Mukopadhyay\n")
+    f.write("Traders\n")
+    f.write("ML-CUP24 V1\n")
+    f.write("20/06/2025\n")
     output_df.to_csv(f, index=False, header=False)
 
 print(f"\nPredictions saved to: {output_filename}")

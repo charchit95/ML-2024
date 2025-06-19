@@ -1,0 +1,3 @@
+This project involves building a Neural Network completely from scratch using Python.
+To find the best setup, we first run a grid search to explore different combinations of hyperparameters. Once we identify the best model, we evaluate its performance using 5-fold cross-validation to ensure it generalizes well.
+The final model we ended up with has one hidden layer containing 30 neurons, and it uses the TanH activation function.
