@@ -43,29 +43,51 @@ if __name__ == '__main__':
         neural = NN(input_unit, momentum, 'monk')
         add_specific_n_layers(neural, num_hidden_layer, act_function, num_units_hidden)
 
-        errors, e = neural.train(num_epochs, error_rate, eta, X_train, y_train, alpha)
+        errors, e, mse_list, acc_list = neural.train(num_epochs, error_rate, eta, X_train, y_train, alpha)
 
         # Prediction
         y_pred = neural.predict(np.asarray(X_test))
         acc = accuracy(y_test, y_pred)
+        
 
-        # plot of errors
-        list2 = np.arange(e)
-        plt.title("Errors - Iteration: " + str(i) + "Monk1")
-        plt.plot(list2, errors, label="Train")
-        plt.xlim(right = 1000)
-        plt.legend()
+        # # plot of errors
+        # list2 = np.arange(e)
+        # plt.title("Errors - Iteration: " + str(i) + "Monk1")
+        # plt.plot(list2, errors, label="Train")
+        # plt.xlim(right = 1000)
+        # plt.legend()
         # plt.show()
 
-        print("\nPrediction:", y_pred)
-        print(y_test)
+        # print("\nPrediction:", y_pred)
+        # print(y_test)
 
-        print("Accuracy: ", accuracy(y_test, y_pred), "%")
+        print("Accuracy: ", acc, "%")
 
-        for idxl, layer in enumerate(neural.layers):
-            print(f"Layer {idxl}")
-            for idxu, unit in enumerate(layer.units):
-                print(f"\tUnit {idxu} range_weigth: {unit.range_weights}")
+        if acc == 100:
+            # Plot MSE over epochs
+            plt.figure()
+            plt.title(f"MSE - Monk1")
+            plt.plot(np.arange(e), mse_list, color='orange', label="MSE")
+            plt.xlabel("Epochs")
+            plt.ylabel("Mean Squared Error")
+            plt.xlim(left=0, right=1000)
+            plt.legend()
+            plt.show()
+
+            # Plot Accuracy over epochs
+            plt.figure()
+            plt.title(f"Accuracy - Monk1")
+            plt.plot(np.arange(e), acc_list, color='green', label="Accuracy")
+            plt.xlabel("Epochs")
+            plt.ylabel("Accuracy (%)")
+            plt.xlim(left=0, right=1000)
+            plt.legend()
+            plt.show()
+            
+        # for idxl, layer in enumerate(neural.layers):
+        #     print(f"Layer {idxl}")
+        #     for idxu, unit in enumerate(layer.units):
+        #         print(f"\tUnit {idxu} range_weigth: {unit.range_weights}")
 
     param_model = {
         'hidden_layers': [1],

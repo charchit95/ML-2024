@@ -44,61 +44,82 @@ if __name__ == '__main__':
     #alpha = 0.65
     lambda1 = 0.005
 
-    print("Here")
+    print("Monk 3")
     for i in range(10):
 
         # Model
         neural = NN(input_unit, momentum, 'monk', regularization)
         add_specific_n_layers(neural, num_hidden_layer, act_function, num_units_hidden)
 
-        errors, e = neural.train(num_epochs, error_rate, eta, X_train, y_train, alpha)
+        errors, e, mse_list, acc_list = neural.train(num_epochs, error_rate, eta, X_train, y_train, alpha)
 
         # Prediction
         y_pred = neural.predict(np.asarray(X_test))
         acc = accuracy(y_test, y_pred)
 
         # plot of errors
-        list2 = np.arange(e)
-        plt.title("Errors - Iteration: " + str(i) + "Monk3")
-        plt.plot(list2, errors, label="Train")
-        plt.legend()
+        # list2 = np.arange(e)
+        # plt.title("Errors - Iteration: " + str(i) + "Monk3")
+        # plt.plot(list2, errors, label="Train")
+        # plt.legend()
         # plt.show()
 
-        print("\nPrediction:", y_pred)
-        print(y_test)
+        # print("\nPrediction:", y_pred)
+        # print(y_test)
 
-        print("Accuracy: ", accuracy(y_test, y_pred), "%")
+        print("Accuracy: ", acc, "%")
 
-        for idxl, layer in enumerate(neural.layers):
-            print(f"Layer {idxl}")
-            for idxu, unit in enumerate(layer.units):
-                print(f"\tUnit {idxu} range_weigth: {unit.range_weights}")
+        if acc > 96:
+            # Plot MSE over epochs
+            plt.figure()
+            plt.title(f"MSE - Monk3")
+            plt.plot(np.arange(e), mse_list, color='orange', label="MSE")
+            plt.xlabel("Epochs")
+            plt.ylabel("Mean Squared Error")
+            plt.xlim(left=0)
+            plt.legend()
+            plt.show()
 
-    param_model = {
-        'hidden_layers': [1],
-        'n_units': [4],
-        'act_fun': ReLu,
-        'eta': [0.75],
-        'momentum': True,
-        'alpha': [0.75, 0.8, 0.85, 0.9, 0.95, 0, 99],
-        'regularization': True,
-        'lambda': [0],
-        'regression': False
-    }
+            # Plot Accuracy over epochs
+            plt.figure()
+            plt.title(f"Accuracy - Monk3")
+            plt.plot(np.arange(e), acc_list, color='green', label="Accuracy")
+            plt.xlabel("Epochs")
+            plt.ylabel("Accuracy (%)")
+            plt.xlim(left=0)
+            plt.legend()
+            plt.show()
 
-    par, acc, err = k_fold_cross_validation(X_train, y_train, num_epochs, error_rate, 5, param_model)
-    print(par, acc, err)
+        # for idxl, layer in enumerate(neural.layers):
+        #     print(f"Layer {idxl}")
+            # for idxu, unit in enumerate(layer.units):
+            #     print(f"\tUnit {idxu} range_weigth: {unit.range_weights}")
 
-    # Grid Search
-    param_grid = {
-        'hidden_layers': np.arange(1, 2),
-        'n_units': np.arange(2, 5),
-        'eta': np.arange(0.5, 1, 0.05),
-        'alpha': np.arange(0.5, 1, 0.05),
-        'lambda': np.arange(0.001, 0.009, 0.001)
-    }
+    # param_model = {
+    #     'hidden_layers': [1],
+    #     'n_units': [4],
+    #     'act_fun': ReLu,
+    #     'eta': [0.75],
+    #     'momentum': True,
+    #     'alpha': [0.75, 0.8, 0.85, 0.9, 0.95, 0, 99],
+    #     'regularization': True,
+    #     'lambda': [0],
+    #     'regression': False
+    # }
 
-    params, acc, err = grid_search(X_train, y_train, X_test, y_test, param_grid, momentum, num_epochs, error_rate,
-                                   regularization, False)
-    print("accura: " + str(acc) + ",error: " + str(err) + ",params: " + str(params))
+    # par, acc, err = k_fold_cross_validation(X_train, y_train, num_epochs, error_rate, 5, param_model)
+    # print(par, acc, err)
+
+    # # Grid Search
+    # param_grid = {
+    #     'hidden_layers': np.arange(1, 2),
+    #     'n_units': np.arange(2, 5),
+    #     'eta': np.arange(0.5, 1, 0.05),
+    #     'alpha': np.arange(0.5, 1, 0.05),
+    #     'lambda': np.arange(0.001, 0.009, 0.001)
+    # }
+
+    # params, acc, err = grid_search(X_train, y_train, X_test, y_test, param_grid, momentum, num_epochs, error_rate,
+    #                                regularization, False)
+    # print("accura: " + str(acc) + ",error: " + str(err) + ",params: " + str(params))
 

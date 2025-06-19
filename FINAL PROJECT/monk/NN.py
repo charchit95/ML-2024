@@ -137,49 +137,52 @@ class NN:
         :param y: target data
         :param alpha: value for momentum
         :param lambda1: value for regularization
-        :return: error and number of epochs
+        :return: error, num_epochs, mse_list, accuracy_list
         """
 
         errors = []
+        mse_list = []
+        accuracy_list = []
+
         low_error = False
         e = 0
 
         if self.momentum:
             if alpha is None:
-                warn("Unespecified alpha value")
+                warn("Unspecified alpha value")
                 alpha = 0  # momentum not active
 
-        # add output layer because only at this time you know the number of layers
+        # Add output layer if not already added
         if not self.output_l:
             self.output_layer()
             self.output_l = True
 
-        # for each epoch compute the forward pass, calculation of errors, and calculate backward pass if necessary
         while e < epochs and not low_error:
             self.forward_pass(X)
 
-            # calculation of error, mean square error, or mean square error with regularization
-            prediction = []
-            for unit in self.layers[-1].units:
-                prediction.append(unit.get_value())
+            # Gather output prediction
+            prediction = [unit.get_value() for unit in self.layers[-1].units]
 
+            # Compute MSE
             error = mean_square_error(np.asarray(y), prediction)
+            mse_list.append(error)
 
-            # early stopping:
-            # if the difference between the error and the previous error is smaller than error rate
-            # otherwise do the backward pass
-            if e > 0:
-                if np.abs(errors[-1] - error) < error_rate:
-                    low_error = True
-                else:
-                    self.backward(y, eta, X, alpha)
+            # Compute Accuracy
+            y_pred = self.predict(np.asarray(X))
+            acc = accuracy(y, y_pred)
+            accuracy_list.append(acc)
+
+            # Early stopping
+            if e > 0 and np.abs(errors[-1] - error) < error_rate:
+                low_error = True
             else:
                 self.backward(y, eta, X, alpha)
 
             e += 1
             errors.append(error)
 
-        return errors, e
+        return errors, e, mse_list, accuracy_list
+
 
 
     def predict(self, X_test):
