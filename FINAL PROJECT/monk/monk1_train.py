@@ -63,31 +63,31 @@ if __name__ == '__main__':
 
         print("Accuracy: ", acc, "%")
 
-        if acc == 100:
-            # Plot MSE over epochs
-            plt.figure()
-            plt.title(f"MSE - Monk1")
-            plt.plot(np.arange(e), mse_list, color='orange', label="MSE")
-            plt.xlabel("Epochs")
-            plt.ylabel("Mean Squared Error")
-            plt.xlim(left=0, right=1000)
-            plt.legend()
-            plt.show()
+        
+        # Plot MSE over epochs
+        plt.figure()
+        plt.title(f"MSE - Monk1")
+        plt.plot(np.arange(e), mse_list, color='orange', label="MSE")
+        plt.xlabel("Epochs")
+        plt.ylabel("Mean Squared Error")
+        plt.xlim(left=0, right=1000)
+        plt.legend()
+        plt.show()
 
-            # Plot Accuracy over epochs
-            plt.figure()
-            plt.title(f"Accuracy - Monk1")
-            plt.plot(np.arange(e), acc_list, color='green', label="Accuracy")
-            plt.xlabel("Epochs")
-            plt.ylabel("Accuracy (%)")
-            plt.xlim(left=0, right=1000)
-            plt.legend()
-            plt.show()
+        # Plot Accuracy over epochs
+        plt.figure()
+        plt.title(f"Accuracy - Monk1")
+        plt.plot(np.arange(e), acc_list, color='green', label="Accuracy")
+        plt.xlabel("Epochs")
+        plt.ylabel("Accuracy (%)")
+        plt.xlim(left=0, right=1000)
+        plt.legend()
+        plt.show()
             
-        # for idxl, layer in enumerate(neural.layers):
-        #     print(f"Layer {idxl}")
-        #     for idxu, unit in enumerate(layer.units):
-        #         print(f"\tUnit {idxu} range_weigth: {unit.range_weights}")
+        for idxl, layer in enumerate(neural.layers):
+            print(f"Layer {idxl}")
+            for idxu, unit in enumerate(layer.units):
+                print(f"\tUnit {idxu} range_weigth: {unit.range_weights}")
 
     param_model = {
         'hidden_layers': [1],
